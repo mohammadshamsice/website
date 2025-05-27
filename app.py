@@ -12,17 +12,20 @@ projects = {
     "FRP": {
         "title": "FRP Project",
         "status": "In Progress",
-        "progress": 70
+        "progress": 70,
+        "estimated_completion": "15 June 2025"
     },
     "Nano": {
         "title": "Nano Research",
         "status": "In Progress",
-        "progress": 50
+        "progress": 50,
+        "estimated_completion": "10 July 2025"
     },
     "CPT": {
         "title": "CPT-CNN-LSTM-GNN",
         "status": "In Progress",
-        "progress": 50
+        "progress": 50,
+        "estimated_completion": "25 July 2025"
     }
 }
 
