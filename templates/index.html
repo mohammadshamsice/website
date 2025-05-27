@@ -17,13 +17,7 @@
     <p>Status: {{ project.status }}</p>
     <p>Completion: {{ project.estimated_completion }}</p>
     <div class="progress-container"><div class="progress-bar"></div></div>
-    <div class="upload-section">
-      <form action="/upload/{{ key }}" method="post" enctype="multipart/form-data">
-        <label class="file-label">Upload File</label>
-        <input type="file" name="file" class="file-input">
-        <div class="file-name">No file uploaded</div>
-      </form>
-    </div>
+    
     <a href="{{ url_for('project_details', project_name=key) }}" target="_blank">
       <button type="button" class="details-btn">Details</button>
     </a>
