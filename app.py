@@ -27,7 +27,7 @@ projects = {
         "progress": 50,
         "estimated_completion": "25 July 2025"
     },
-    "Pipe": {
+    "pipe": {
         "title": "Pipe rehabilitation with FRP",
         "status": "In Progress",
         "progress": 90,
