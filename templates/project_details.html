@@ -9,20 +9,16 @@
 <body>
 
 <h1>{{ project.title }}</h1>
-
 <p><strong>Status:</strong> {{ project.status }}</p>
-
-<!-- قسمت گرافیکی مراحل -->
-<div class="steps-container">
-  <div class="step done">Pure Compression ABAQUS modeling</div>
-  <div class="step done">IDA ABAQUS modeling</div>
-  <div class="step done">Compare data with Lam and Teng model</div>
-  <div class="step">ML</div>
-  <div class="step">Paper</div>
-</div>
-
-<hr style="margin: 40px 0; border: none; border-top: 1px solid #444;">
 <p><strong>Estimated Completion:</strong> {{ project.estimated_completion }}</p>
+
+<div class="steps-container">
+  {% for step in project.steps %}
+    <div class="step{% if step.completed %} done{% endif %}">
+      {{ step.title }}
+    </div>
+  {% endfor %}
+</div>
 <!-- لیست PDF ها -->
 <h2>📚 Project Materials</h2>
 <ul class="pdf-list">

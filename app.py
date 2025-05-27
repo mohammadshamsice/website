@@ -8,30 +8,56 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['PDF_FOLDER'], exist_ok=True)
 
 # دیتا جزئیات پروژه‌ها
+# دیتا جزئیات پروژه‌ها
 projects = {
     "FRP": {
         "title": "FRP Project",
         "status": "In Progress",
         "progress": 70,
-        "estimated_completion": "15 June 2025"
+        "estimated_completion": "15 June 2025",
+        "steps": [
+            {"title": "Pure Compression ABAQUS modeling", "completed": True},
+            {"title": "IDA ABAQUS modeling", "completed": True},
+            {"title": "Compare data with Lam and Teng model", "completed": True},
+            {"title": "ML", "completed": False},
+            {"title": "Paper", "completed": False}
+        ]
     },
     "Nano": {
         "title": "Nano Research",
         "status": "In Progress",
         "progress": 50,
-        "estimated_completion": "10 July 2025"
+        "estimated_completion": "10 July 2025",
+        "steps": [
+            {"title": "Data Collection", "completed": True},
+            {"title": "Preprocessing", "completed": True},
+            {"title": "Model Training", "completed": False},
+            {"title": "Validation", "completed": False},
+            {"title": "Paper", "completed": False}
+        ]
     },
     "CPT": {
         "title": "CPT-CNN-LSTM-GNN",
         "status": "In Progress",
         "progress": 50,
-        "estimated_completion": "25 July 2025"
+        "estimated_completion": "25 July 2025",
+        "steps": [
+            {"title": "CPT Overview", "completed": True},
+            {"title": "Model Training", "completed": True},
+            {"title": "Validation", "completed": False},
+            {"title": "Paper", "completed": False}
+        ]
     },
     "pipe": {
         "title": "Pipe rehabilitation with FRP",
         "status": "In Progress",
         "progress": 90,
-        "estimated_completion": "5 June 2025"
+        "estimated_completion": "5 June 2025",
+        "steps": [
+            {"title": "ABAQUS Modeling", "completed": True},
+            {"title": "Comparing Results with FEM", "completed": True},
+            {"title": "Paper", "completed": False}
+        ]
     }
 }
 
