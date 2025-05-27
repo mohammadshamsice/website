@@ -198,16 +198,7 @@ def chat():
     return render_template('chat.html')
 
 @app.route('/upload/<project_name>', methods=['POST'])
-def upload_file(project_name):
-    if 'file' not in request.files:
-        return 'No file part', 400
-    file = request.files['file']
-    if file.filename == '':
-        return 'No selected file', 400
-    if file:
-        filename = f"{project_name}_{file.filename}"
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect(url_for('project_details', project_name=project_name))
+
 
 @app.route('/course/<course_name>')
 def course_details(course_name):
