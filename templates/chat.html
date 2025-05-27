@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Global Chat</h1>
+
+<div class="chat-box">
+  <textarea id="chat-log" rows="15" readonly></textarea><br>
+  <input type="text" id="chat-input" placeholder="Type your message..." />
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById("chat-input");
+    const log = document.getElementById("chat-log");
+    if (input.value.trim()) {
+      log.value += "You: " + input.value + "\n";
+      input.value = "";
+      log.scrollTop = log.scrollHeight;
+    }
+  }
+</script>
+
+</body>
+</html>

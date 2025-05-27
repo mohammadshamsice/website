@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohammad's Projects</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Mohammad's Projects</h1>
+
+<div class="dashboard">
+  {% for key, project in projects.items() %}
+  <div class="card" data-progress="{{ project.progress }}">
+    <h2>{{ project.title }}</h2>
+    <p>Status: {{ project.status }}</p>
+    <div class="progress-container"><div class="progress-bar"></div></div>
+    <div class="upload-section">
+      <form action="/upload/{{ key }}" method="post" enctype="multipart/form-data">
+        <label class="file-label">Upload File</label>
+        <input type="file" name="file" class="file-input">
+        <div class="file-name">No file uploaded</div>
+      </form>
+    </div>
+    <a href="{{ url_for('project_details', project_name=key) }}" target="_blank">
+      <button type="button" class="details-btn">Details</button>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+<h2 style="margin-top: 80px; color: #70a1ff;">📚 Courses</h2>
+
+<div class="dashboard">
+  {% for key, course in courses.items() %}
+  <div class="card">
+    <h2>{{ course.title }}</h2>
+    <p>Instructor: {{ course.instructor }}</p>
+    <p>{{ course.TA }}</p>
+    <a href="{{ url_for('course_details', course_name=key) }}" target="_blank">
+      <button type="button" class="details-btn">Enter Course</button>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

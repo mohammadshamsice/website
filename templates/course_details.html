@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ course.title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>{{ course.title }}</h1>
+<p><strong>Instructor:</strong> {{ course.instructor }}</p>
+<p><strong>TA:</strong> {{ course.TA }}</p>
+
+<!-- Sessions -->
+<h2>📅 Sessions</h2>
+{% for session in course.sessions %}
+  <div style="margin-bottom: 30px;">
+    <h3>{{ session.title }}</h3>
+    <ul>
+      {% for topic in session.topics %}
+        <li>{{ topic }}</li>
+      {% endfor %}
+    </ul>
+    <ul class="pdf-list">
+      {% for material in session.materials %}
+        <li>
+          <a href="{{ url_for('download_pdf', filename=material.filename) }}" target="_blank">
+            {{ material.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
+
+<!-- Resources -->
+<h2>📘 Additional Resources</h2>
+<ul class="pdf-list">
+  {% if course.resources %}
+    {% for resource in course.resources %}
+      <li>
+        <a href="{{ url_for('download_pdf', filename=resource.filename) }}" target="_blank">
+          {{ resource.title }}
+        </a>
+      </li>
+    {% endfor %}
+  {% else %}
+    <p>No additional resources yet.</p>
+  {% endif %}
+</ul>
+
+</body>
+</html>

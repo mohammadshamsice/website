@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ project.title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>{{ project.title }}</h1>
+
+<p><strong>Status:</strong> {{ project.status }}</p>
+
+<!-- قسمت گرافیکی مراحل -->
+<div class="steps-container">
+  <div class="step done">Pure Compression ABAQUS modeling</div>
+  <div class="step done">IDA ABAQUS modeling</div>
+  <div class="step done">Compare data with Lam and Teng model</div>
+  <div class="step">ML</div>
+  <div class="step">Paper</div>
+</div>
+
+<hr style="margin: 40px 0; border: none; border-top: 1px solid #444;">
+
+<!-- لیست PDF ها -->
+<h2>📚 Project Materials</h2>
+<ul class="pdf-list">
+  {% if project.pdfs %}
+    {% for pdf in project.pdfs %}
+      <li>
+        <a href="{{ url_for('download_pdf', filename=pdf.filename) }}" target="_blank">
+          {{ pdf.title }}
+        </a>
+      </li>
+    {% endfor %}
+  {% else %}
+    <p>No materials available yet.</p>
+  {% endif %}
+</ul>
+
+<!-- بخش چت -->
+<div class="chat-box">
+  <h3>💬 Chat Room</h3>
+  <textarea id="chat-log" rows="10" readonly></textarea><br>
+  <input type="text" id="chat-input" placeholder="Enter your message..." />
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById("chat-input");
+    const log = document.getElementById("chat-log");
+    if (input.value.trim()) {
+      log.value += "User: " + input.value + "\n";
+      input.value = "";
+      log.scrollTop = log.scrollHeight;
+    }
+  }
+
+  // Set progress bar widths
+  document.querySelectorAll('.card').forEach(card => {
+    const progress = card.getAttribute('data-progress') || 0;
+    const progressBar = card.querySelector('.progress-bar');
+    progressBar.style.width = `${progress}%`;
+  });
+</script>
+
+</body>
+</html>
