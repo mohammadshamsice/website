@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nano Project Steps</title>
+  <style>
+    body {
+      background-color: #1e1e2f;
+      font-family: 'Roboto', sans-serif;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #70a1ff;
+    }
+
+    .steps-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .step {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #29293d;
+      border: 4px solid #70a1ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      text-align: center;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+
+    .step.done {
+      background-color: #70a1ff;
+      color: #1e1e2f;
+    }
+
+    .step.done::after {
+      content: "✔";
+      position: absolute;
+      bottom: -25px;
+      font-size: 1.5rem;
+      color: #70ffb3;
+    }
+
+    @media(max-width: 600px) {
+      .step {
+        width: 90px;
+        height: 90px;
+        font-size: 0.9rem;
+      }
+
+      .step.done::after {
+        bottom: -20px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Pipe rehabilitation with FRP Project Steps</h1>
+
+<div class="steps-container">
+  <div class="step done">ABAQUS modeling</div>
+  <div class="step done">Camparing results with FEM solution</div>
+  <div class="step">Paper</div>
+</div>
+
+</body>
+</html>
