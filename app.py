@@ -12,31 +12,17 @@ projects = {
     "FRP": {
         "title": "FRP Project",
         "status": "In Progress",
-        "progress": 70,
-        "pdfs": [
-            {"title": "فصل اول - Pure Compression", "filename": "#.pdf"},
-            {"title": "فصل دوم - IDA Modeling", "filename": "#.pdf"},
-            {"title": "فصل سوم - Comparison", "filename": "#.pdf"}
-        ]
+        "progress": 70
     },
     "Nano": {
         "title": "Nano Research",
         "status": "In Progress",
-        "progress": 50,
-        "pdfs": [
-            {"title": "فصل اول - Introduction", "filename": "#.pdf"},
-            {"title": "فصل دوم - Data Collection", "filename": "#.pdf"}
-        ]
+        "progress": 50
     },
     "CPT": {
         "title": "CPT-CNN-LSTM-GNN",
         "status": "In Progress",
-        "progress": 50,
-        "pdfs": [
-            {"title": "فصل اول - CPT Overview", "filename": "#.pdf"},
-            {"title": "فصل دوم - Model Training", "filename": "#.pdf"},
-            {"title": "فصل سوم - Validation", "filename": "#.pdf"}
-        ]
+        "progress": 50
     }
 }
 
