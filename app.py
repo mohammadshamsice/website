@@ -62,9 +62,8 @@ projects = {
     "Fracture Mechanics": {
         "title": "Fracture Mechanics",
         "status": "Feature work",
-        "Fellow_researcher": "Behnam Zia",
+        "estimated_completion": "",
         "progress": 0,
-        "Start time": "Sep 2025",
         "steps": [
             {"title": "Meshing for FEM analysis", "completed": False},
             {"title": "GAN + GNN", "completed": False},
