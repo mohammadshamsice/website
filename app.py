@@ -62,7 +62,7 @@ projects = {
     "Fracture Mechanics": {
         "title": "Fracture Mechanics",
         "status": "Feature work",
-        "Fellow researcher": "Behnam Zia",
+        "Fellow_researcher": "Behnam Zia",
         "progress": 0,
         "Start time": "Sep 2025",
         "steps": [
