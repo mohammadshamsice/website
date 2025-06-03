@@ -58,6 +58,19 @@ projects = {
             {"title": "Comparing Results with FEM", "completed": True},
             {"title": "Paper", "completed": False}
         ]
+    },
+    "Fracture Mechanics": {
+        "title": "Fracture Mechanics",
+        "status": "Feature work",
+        "Fellow researcher": "Behnam Zia",
+        "progress": 0,
+        "Start time": "Sep 2025",
+        "steps": [
+            {"title": "Meshing for FEM analysis", "completed": False},
+            {"title": "GAN + GNN", "completed": False},
+            {"title": "Experimental results Vs. AI based model", "cpmpleted": False},
+            {"title": "Paper", "completed": False}
+        ]
     }
 }
 
@@ -126,7 +139,8 @@ courses = {
                 "title": "Session 9 - Slender Columns",
                 "materials": [
                     {"title": "Part 1", "filename": "Part9-1-Slender-columns.pdf"},
-                    {"title": "Part 2", "filename": "Part9-2-Slender-columns.pdf"}
+                    {"title": "Part 2", "filename": "Part9-2-Slender-columns.pdf"},
+                    {"title": "Part 3", "filename": "Part9-3-Slender-columns.pdf"}
                 ]
             }
         ],
