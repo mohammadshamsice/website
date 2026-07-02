@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohammad Shamsi — Structural Engineering Researcher</title>
+  <meta name="description" content="Mohammad Shamsi — M.Sc. Student in Structural Engineering at Sharif University of Technology. Research in SHM, FEM, Random Vibration, and Machine Learning.">
+  <meta name="author" content="Mohammad Shamsi">
+  <link rel="canonical" href="https://github.com/mohammadshamsice/">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #05080A;
+      --bg-secondary: #0B0F13;
+      --bg-card: #0E1216;
+      --bg-card-hover: #111820;
+      --text-primary: #FFFFFF;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      --accent: #c6f91f;
+      --accent-dim: rgba(198, 249, 31, 0.1);
+      --accent-mid: rgba(198, 249, 31, 0.2);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-accent: rgba(198, 249, 31, 0.2);
+      --glass: rgba(11, 15, 19, 0.85);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Subtle Grid Background (Structural Engineering Motif) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Radial glow at top */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(198,249,31,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ========== NAVIGATION ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(5, 8, 10, 0.95);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo .accent-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(198,249,31,0.5);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 8px rgba(198,249,31,0.4); }
+      50% { box-shadow: 0 0 16px rgba(198,249,31,0.7); }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 450;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #000 !important;
+      font-weight: 600 !important;
+      padding: 7px 16px !important;
+      border-radius: 8px !important;
+    }
+
+    .nav-cta:hover {
+      box-shadow: 0 0 20px rgba(198,249,31,0.3) !important;
+      transform: translateY(-1px);
+    }
+
+    /* Mobile menu */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+    }
+
+    .mobile-toggle:hover { background: rgba(255,255,255,0.05); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(5,8,10,0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      z-index: 999;
+    }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu a {
+      display: block;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 450;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+      position: relative;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 64px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-text { max-width: 620px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--border-accent);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-badge .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .accent { color: var(--accent); }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .hero-institution {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #000;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(198,249,31,0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stat .value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-stat .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    /* Hero Image/Profile */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-card {
+      width: 300px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card-hover));
+      border: 2px solid var(--border);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: var(--accent);
+      overflow: hidden;
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-name {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .profile-role {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .profile-links {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .profile-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .profile-link:hover {
+      border-color: var(--border-accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+      line-height: 1.2;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+      border: none;
+    }
+
+    /* ========== ABOUT ========== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-text p strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .edu-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .edu-item {
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .edu-item:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+    }
+
+    .edu-item.current::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 24px;
+      right: 24px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 0 0 2px 2px;
+    }
+
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .edu-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .edu-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ========== RESEARCH INTERESTS ========== */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .interest-card {
+      padding: 28px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .interest-card:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+    }
+
+    .interest-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .interest-card h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .interest-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========== PUBLICATIONS ========== */
+    .pub-item {
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .pub-item:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+    }
+
+    .pub-type {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .pub-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .pub-authors .self {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .pub-venue {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .pub-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .pub-link:hover {
+      color: var(--accent);
+      border-color: var(--border-accent);
+      background: var(--accent-dim);
+    }
+
+    .pub-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: #FBBF24;
+      background: rgba(251,191,36,0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    /* ========== PROJECTS ========== */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .project-header {
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      cursor: pointer;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+
+    .project-header:hover {
+      background: rgba(255,255,255,0.01);
+    }
+
+    .project-header-left { flex: 1; }
+
+    .project-semester {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+
+    .project-brief {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .project-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+    }
+
+    .project-toggle {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 4px;
+    }
+
+    .project-toggle:hover {
+      color: var(--accent);
+      border-color: var(--border-accent);
+    }
+
+    .project-toggle.open {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    .project-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-body.open {
+      max-height: 800px;
+    }
+
+    .project-body-inner {
+      padding: 0 32px 28px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .project-body-inner ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .project-body-inner li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .project-body-inner li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: var(--font-mono);
+    }
+
+    .project-grade {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-top: 16px;
+    }
+
+    /* ========== CODE & SOFTWARE ========== */
+    .code-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .code-card {
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .code-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+    }
+
+    .code-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .code-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .code-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .code-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .code-card .tech-stack {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .code-card .tech-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+    }
+
+    .code-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+
+    .code-status.in-dev {
+      color: #FBBF24;
+      background: rgba(251,191,36,0.1);
+    }
+
+    .code-status.planned {
+      color: #818CF8;
+      background: rgba(129,140,248,0.1);
+    }
+
+    .code-status.available {
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .code-doi {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      margin-top: 12px;
+      display: inline-block;
+    }
+
+    /* ========== SKILLS ========== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .skill-category {
+      padding: 28px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .skill-category-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-category-title i { color: var(--accent); }
+
+    .skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .skill-bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--accent);
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+
+    .skill-fill.animated { /* width set via inline style */ }
+
+    .skill-simple {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skill-simple-item {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-simple-item::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ========== AWARDS ========== */
+    .awards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .award-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+    }
+
+    .award-item:hover {
+      border-color: var(--border-accent);
+      transform: translateX(4px);
+    }
+
+    .award-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .award-text h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .award-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== TEACHING ========== */
+    .teaching-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .teaching-item {
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+    }
+
+    .teaching-item:hover {
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .teaching-course {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .teaching-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== EXPERIENCE ========== */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .exp-item {
+      padding: 28px 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .exp-item:hover {
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .exp-role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .exp-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    /* ========== RESEARCH / THESIS ========== */
+    .thesis-card {
+      padding: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thesis-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent 60%);
+    }
+
+    .thesis-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .thesis-meta {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .thesis-meta span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .thesis-meta span i { color: var(--accent); }
+
+    .thesis-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .thesis-contributions {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .thesis-contributions li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.6;
+    }
+
+    .thesis-contributions li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* ========== CONTACT ========== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-value a {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-value a:hover { color: var(--accent); }
+
+    .contact-value span {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-cta-box {
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-cta-box h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-cta-box p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ========== SCROLL REVEAL ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ========== BACK TO TOP ========== */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .back-to-top:hover {
+      color: var(--accent);
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+      }
+      .hero-text { max-width: 100%; }
+      .hero-buttons { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { order: -1; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .interests-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .thesis-contributions { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: flex; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .section-title { font-size: 1.8rem; }
+      .interests-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .code-grid { grid-template-columns: 1fr; }
+      .teaching-list { grid-template-columns: 1fr; }
+      .project-header { padding: 20px 24px; }
+      .project-body-inner { padding: 0 24px 20px; padding-top: 20px; }
+      .pub-item { padding: 24px; }
+      .thesis-card { padding: 28px 24px; }
+      .hero-stats { gap: 24px; }
+      .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+      .exp-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons a { width: 100%; justify-content: center; }
+      .hero-stats { flex-direction: column; gap: 16px; }
+      .profile-card { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="accent-dot"></span>
+        M. Shamsi
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#research" class="nav-link">Research</a></li>
+        <li><a href="#publications" class="nav-link">Publications</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#code" class="nav-link">Code</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <i data-lucide="menu" style="width:20px;height:20px;"></i>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#code">Code & Software</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="status-dot"></span>
+            Open to PhD Positions — 2026
+          </div>
+          <h1>
+            Structural<br>
+            Engineering<br>
+            <span class="accent">Researcher</span>
+          </h1>
+          <p class="hero-subtitle">
+            M.Sc. student at Sharif University of Technology, working at the intersection of structural dynamics, physics-informed machine learning, and structural health monitoring.
+          </p>
+          <p class="hero-institution">
+            <i data-lucide="map-pin" style="width:14px;height:14px;color:var(--accent);"></i>
+            Sharif University of Technology, Tehran, Iran
+          </p>
+          <div class="hero-buttons">
+            <a href="#publications" class="btn-primary">
+              <i data-lucide="file-text" style="width:16px;height:16px;"></i>
+              View Publications
+            </a>
+            <a href="#contact" class="btn-secondary">
+              <i data-lucide="send" style="width:16px;height:16px;"></i>
+              Get in Touch
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="value">17.16</span>
+              <span class="label">M.Sc. GPA / 20</span>
+            </div>
+            <div class="hero-stat">
+              <span class="value">2nd</span>
+              <span class="label">B.Sc. Rank</span>
+            </div>
+            <div class="hero-stat">
+              <span class="value">3rd</span>
+              <span class="label">National Olympiad</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="profile-card reveal">
+            <div class="profile-avatar">
+              <!-- Replace with your photo: <img src="your-photo.jpg" alt="Mohammad Shamsi"> -->
+              <i data-lucide="user" style="width:48px;height:48px;"></i>
+            </div>
+            <div class="profile-name">Mohammad Shamsi</div>
+            <div class="profile-role">M.Sc. Structural Engineering</div>
+            <div class="profile-links">
+              <a href="mailto:mohammad.shamsi03@sharif.edu" class="profile-link" title="Email">
+                <i data-lucide="mail" style="width:16px;height:16px;"></i>
+              </a>
+              <a href="https://github.com/mohammadshamsi" target="_blank" class="profile-link" title="GitHub">
+                <i data-lucide="github" style="width:16px;height:16px;"></i>
+              </a>
+              <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" class="profile-link" title="Google Scholar">
+                <i data-lucide="graduation-cap" style="width:16px;height:16px;"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" class="profile-link" title="LinkedIn">
+                <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== ABOUT ====== -->
+  <section id="about">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">About</div>
+        <div class="section-title">Education & Background</div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal reveal-delay-1">
+          <p>
+            I am a <strong>M.Sc. student in Structural Engineering</strong> at Sharif University of Technology, one of the most prestigious technical universities in the Middle East. My research focuses on developing <strong>Physics-Informed Neural Networks (PINNs)</strong> that integrate finite element simulations with real sensor data for structural health monitoring and digital twin development.
+          </p>
+          <p>
+            Prior to Sharif, I earned my <strong>B.Sc. in Civil Engineering</strong> from Shahid Bahonar University of Kerman, where I ranked <strong>2nd among 66 peers</strong> and earned a bronze medal at the Iran National Civil Engineering Olympiad. I am passionate about bridging the gap between computational mechanics and data-driven methods.
+          </p>
+          <p>
+            I am actively seeking <strong>PhD positions</strong> for Fall 2026 in structural engineering, computational mechanics, or structural health monitoring, where I can contribute to advancing next-generation intelligent structural systems.
+          </p>
+        </div>
+        <div class="edu-timeline reveal reveal-delay-2">
+          <div class="edu-item current">
+            <div class="edu-degree">M.Sc. — Structural Engineering</div>
+            <div class="edu-school">Sharif University of Technology</div>
+            <div class="edu-meta">
+              <span><i data-lucide="calendar" style="width:12px;height:12px;"></i> 2024 — Present</span>
+              <span><i data-lucide="award" style="width:12px;height:12px;"></i> GPA: 17.16 / 20</span>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">B.Sc. — Civil Engineering</div>
+            <div class="edu-school">Shahid Bahonar University of Kerman</div>
+            <div class="edu-meta">
+              <span><i data-lucide="calendar" style="width:12px;height:12px;"></i> 2020 — 2024</span>
+              <span><i data-lucide="award" style="width:12px;height:12px;"></i> GPA: 17.36 / 20</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== RESEARCH INTERESTS ====== -->
+  <section id="research">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Research</div>
+        <div class="section-title">Research Interests</div>
+      </div>
+      <div class="interests-grid">
+        <div class="interest-card reveal reveal-delay-1">
+          <div class="interest-icon">
+            <i data-lucide="activity" style="width:20px;height:20px;"></i>
+          </div>
+          <h3>Structural Health Monitoring</h3>
+          <p>Real-time damage detection, sensor data fusion, and digital twin frameworks for civil infrastructure.</p>
+        </div>
+        <div class="interest-card reveal reveal-delay-2">
+          <div class="interest-icon">
+            <i data-lucide="wave-random" style="width:20px;height:20px;"></i>
+          </div>
+          <h3>Random Vibration</h3>
+          <p>Stochastic response analysis, PSD/FRF methods, and seismic input modeling for structures.</p>
+        </div>
+        <div class="interest-card reveal reveal-delay-3">
+          <div class="interest-icon">
+            <i data-lucide="brain" style="width:20px;height:20px;"></i>
+          </div>
+          <h3>Machine Learning & Deep Learning</h3>
+          <p>Physics-informed neural networks, surrogate modeling, and data-driven structural mechanics.</p>
+        </div>
+        <div class="interest-card reveal reveal-delay-1">
+          <div class="interest-icon">
+            <i data-lucide="zap" style="width:20px;height:20px;"></i>
+          </div>
+          <h3>Earthquake Engineering</h3>
+          <p>Seismic response analysis, base-isolation systems (HDRB/LRB), and RC wall behavior under cyclic loading.</p>
+        </div>
+        <div class="interest-card reveal reveal-delay-2">
+          <div class="interest-icon">
+            <i data-lucide="grid-3x3" style="width:20px;height:20px;"></i>
+          </div>
+          <h3>Finite Element Method</h3>
+          <p>Development and implementation of FEM solvers, numerical methods for structural analysis.</p>
+        </div>
+        <div class="interest-card reveal reveal-delay-3">
+          <div class="interest-icon">
+            <i data-lucide="shield-check" style="width:20px;height:20px;"></i>
+          </div>
+          <h3>Seismic Retrofitting</h3>
+          <p>Vulnerability assessment and retrofitting strategies for existing structures under seismic loads.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== PUBLICATIONS ====== -->
+  <section id="publications">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Publications</div>
+        <div class="section-title">Conference Papers & Presentations</div>
+      </div>
+
+      <div class="pub-item reveal reveal-delay-1">
+        <div class="pub-status">
+          <i data-lucide="clock" style="width:12px;height:12px;"></i>
+          Accepted — September 2026
+        </div>
+        <div class="pub-type">Conference Paper & Oral Presentation</div>
+        <div class="pub-title">Hybrid Physics-Informed Neural Networks Integrating Finite Element and Sensor Data for Structural Health Monitoring and Digital Twin Development</div>
+        <div class="pub-authors">
+          <span class="self">M. Shamsi</span>, A. Bakhshi
+        </div>
+        <div class="pub-venue">
+          International Conference on Noise and Vibration Engineering (ISMA 2026) & International Conference on Uncertainty in Structural Dynamics (USD 2026), KU Leuven, Leuven, Belgium, September 7–9, 2026.
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link">
+            <i data-lucide="file-text" style="width:14px;height:14px;"></i>
+            Paper (Coming Soon after Conference publication...)
+          </a>
+          <a href="#" class="pub-link">
+            <i data-lucide="presentation" style="width:14px;height:14px;"></i>
+            Presentation Slides
+          </a>
+          <a href="#code" class="pub-link">
+            <i data-lucide="code" style="width:14px;height:14px;"></i>
+            Associated Code
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item reveal reveal-delay-2">
+        <div class="pub-type">Review Paper</div>
+        <div class="pub-title">Comprehensive Review of Experimental Studies on U-Shaped and Rectangular RC Walls under Quasi-Static Cyclic Loading</div>
+        <div class="pub-authors">
+          <span class="self">M. Shamsi</span>
+        </div>
+        <div class="pub-venue">
+          Fall 2025 — Graduate Course Review Paper, Sharif University of Technology.
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link">
+            <i data-lucide="file-text" style="width:14px;height:14px;"></i>
+            Manuscript
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== PROJECTS ====== -->
+  <section id="projects">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Projects</div>
+        <div class="section-title">Selected Projects</div>
+      </div>
+
+      <div class="projects-list">
+        <!-- Project 1 -->
+        <div class="project-card reveal reveal-delay-1">
+          <div class="project-header" onclick="toggleProject(this)">
+            <div class="project-header-left">
+              <div class="project-semester">Fall 2025 — Graduate Course Project</div>
+              <div class="project-title">Random Vibration of Structures</div>
+              <div class="project-brief">Experimental modal identification and stochastic response analysis of MDOF systems and base-isolated structures.</div>
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">PSD/FRF</span>
+                <span class="project-tag">Modal Analysis</span>
+                <span class="project-tag">Base Isolation</span>
+                <span class="project-tag">Stochastic Processes</span>
+              </div>
+            </div>
+            <button class="project-toggle" aria-label="Toggle details">
+              <i data-lucide="chevron-down" style="width:16px;height:16px;"></i>
+            </button>
+          </div>
+          <div class="project-body">
+            <div class="project-body-inner">
+              <ul>
+                <li>Experimental modal identification of multi-degree-of-freedom structural systems under sine-sweep and random excitation.</li>
+                <li>Estimation of natural frequencies, damping ratios, mode shapes, stationarity, and ergodicity of stochastic excitation records.</li>
+                <li>Frequency-domain and time-domain analysis of structural response under impact and random loading using PSD and FRF methods.</li>
+                <li>Stochastic response analysis of fixed-base and base-isolated (HDRB/LRB) RC frame structures subjected to white-noise and spectrum-compatible earthquake excitations.</li>
+                <li>Computation of response statistics, spectral density functions, impulse response functions, and soil-filtered seismic inputs using Python.</li>
+              </ul>
+              <div class="project-grade">
+                <i data-lucide="star" style="width:14px;height:14px;"></i>
+                Grade: 18.1 / 20
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card reveal reveal-delay-2">
+          <div class="project-header" onclick="toggleProject(this)">
+            <div class="project-header-left">
+              <div class="project-semester">Spring 2025 — Graduate Course Project</div>
+              <div class="project-title">Micro–Nano Mechanics: Q-Factor Prediction of Comb-Drive MEMS Actuators</div>
+              <div class="project-brief">Analytical and numerical approaches for predicting quality factors in MEMS comb-drive actuators.</div>
+              <div class="project-tags">
+                <span class="project-tag">MEMS</span>
+                <span class="project-tag">Analytical Methods</span>
+                <span class="project-tag">Numerical Modeling</span>
+              </div>
+            </div>
+            <button class="project-toggle" aria-label="Toggle details">
+              <i data-lucide="chevron-down" style="width:16px;height:16px;"></i>
+            </button>
+          </div>
+          <div class="project-body">
+            <div class="project-body-inner">
+              <ul>
+                <li>Developed analytical models for Q-factor prediction of comb-drive MEMS actuators considering various energy dissipation mechanisms.</li>
+                <li>Implemented numerical approaches for validation and parametric study of design parameters.</li>
+                <li>Compared analytical predictions with finite element and experimental results from literature.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card reveal reveal-delay-3">
+          <div class="project-header" onclick="toggleProject(this)">
+            <div class="project-header-left">
+              <div class="project-semester">Spring 2024 — Undergraduate Project</div>
+              <div class="project-title">Structural Modeling and Design</div>
+              <div class="project-brief">Analysis and design of reinforced concrete and steel structures using industry-standard software.</div>
+              <div class="project-tags">
+                <span class="project-tag">ETABS</span>
+                <span class="project-tag">SAP2000</span>
+                <span class="project-tag">SAFE</span>
+                <span class="project-tag">RC Design</span>
+                <span class="project-tag">Steel Design</span>
+              </div>
+            </div>
+            <button class="project-toggle" aria-label="Toggle details">
+              <i data-lucide="chevron-down" style="width:16px;height:16px;"></i>
+            </button>
+          </div>
+          <div class="project-body">
+            <div class="project-body-inner">
+              <ul>
+                <li>Complete structural analysis and design of multi-story reinforced concrete buildings.</li>
+                <li>Steel structure modeling, analysis, and connection design per applicable codes.</li>
+                <li>Foundation and floor slab design using SAFE software.</li>
+                <li>Code-compliant design checks and detailing.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== CODE & SOFTWARE ====== -->
+  <section id="code">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Software</div>
+        <div class="section-title">Code & Software Development</div>
+      </div>
+
+      <div class="code-grid">
+        <!-- SHM PINN Code -->
+        <div class="code-card reveal reveal-delay-1">
+          <div class="code-card-icon">
+            <i data-lucide="brain" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="code-status in-dev">
+            <i data-lucide="loader" style="width:12px;height:12px;"></i>
+            In Development
+          </div>
+          <h3 style="margin-top:12px;">SHM-PINN Framework</h3>
+          <p>Hybrid Physics-Informed Neural Network framework integrating FEM and sensor data for structural health monitoring and digital twin development.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">FEM</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="code-doi">
+            📄 Associated with ISMA 2026 Paper
+          </div>
+          <div style="margin-top:16px;">
+            <a href="https://github.com/mohammadshamsice" target="_blank" class="pub-link">
+              <i data-lucide="github" style="width:14px;height:14px;"></i>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Random Vibration Code -->
+        <div class="code-card reveal reveal-delay-2">
+          <div class="code-card-icon">
+            <i data-lucide="wave-random" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="code-status available">
+            <i data-lucide="check-circle" style="width:12px;height:12px;"></i>
+            Available
+          </div>
+          <h3 style="margin-top:12px;">Stochastic Vibration Toolbox</h3>
+          <p>Python toolbox for random vibration analysis: PSD computation, FRF estimation, modal identification, and base-isolation analysis.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">SciPy</span>
+            <span class="tech-tag">Matplotlib</span>
+            <span class="tech-tag">Signal Processing</span>
+          </div>
+          <div class="code-doi">
+            📄 Related to Random Vibration Project
+          </div>
+          <div style="margin-top:16px;">
+            <a href="https://github.com/mohammadshamsice" target="_blank" class="pub-link">
+              <i data-lucide="github" style="width:14px;height:14px;"></i>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- FEM Solver -->
+        <div class="code-card wide reveal reveal-delay-3">
+          <div class="code-card-icon">
+            <i data-lucide="grid-3x3" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="code-status planned">
+            <i data-lucide="rocket" style="width:12px;height:12px;"></i>
+            Planned — Future Software
+          </div>
+          <h3 style="margin-top:12px;">OpenFEM — Open-Source Finite Element Solver</h3>
+          <p>
+            An open-source finite element method solver for structural analysis, currently in the planning stage. The goal is to develop a modular, well-documented Python-based FEM framework that can serve as both a research tool and an educational resource. It will support 1D/2D/3D elements, dynamic analysis, and seamless integration with the SHM-PINN framework for digital twin applications.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">NumPy/SciPy</span>
+            <span class="tech-tag">Sparse Matrices</span>
+            <span class="tech-tag">Mesh Generation</span>
+            <span class="tech-tag">Visualization</span>
+          </div>
+          <div style="margin-top:16px;">
+            <a href="https://github.com/mohammadshamsice" target="_blank" class="pub-link">
+              <i data-lucide="github" style="width:14px;height:14px;"></i>
+              Watch on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Citation Guide -->
+      <div class="reveal reveal-delay-4" style="margin-top:32px; padding:24px 28px; background:rgba(198,249,31,0.03); border:1px solid var(--border-accent); border-radius:var(--radius);">
+        <div style="font-size:0.75rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+          <i data-lucide="quote" style="width:14px;height:14px;"></i>
+          How to Cite These Codes
+        </div>
+        <p style="font-size:0.83rem;color:var(--text-secondary);line-height:1.7;margin-bottom:12px;">
+          If you use any of the codes or data from this website in your research, please cite the associated publication. A recommended citation format and BibTeX entry will be provided on each repository's page upon release.
+        </p>
+        <code style="display:block;font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);background:rgba(0,0,0,0.3);padding:12px 16px;border-radius:8px;line-height:1.8;white-space:pre;overflow-x:auto;">@inproceedings{shamsi2026hybrid,
+  title={Hybrid Physics-Informed Neural Networks Integrating
+         Finite Element and Sensor Data for SHM},
+  author={Shamsi, Mohammad and Bakhshi, Ali},
+  booktitle={ISMA 2026 - USD 2026},
+  year={2026},
+  organization={KU Leuven}
+}</code>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== RESEARCH EXPERIENCE / THESIS ====== -->
+  <section id="thesis">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Research</div>
+        <div class="section-title">M.Sc. Thesis</div>
+      </div>
+
+      <div class="thesis-card reveal reveal-delay-1">
+        <div class="thesis-title">Hybrid Physics-Informed Neural Networks Integrating Finite Element and Sensor Data for Structural Health Monitoring and Digital Twin Development</div>
+        <div class="thesis-meta">
+          <span><i data-lucide="user" style="width:14px;height:14px;"></i> Supervisor: Dr. Ali Bakhshi</span>
+          <span><i data-lucide="building" style="width:14px;height:14px;"></i> Sharif University of Technology</span>
+          <span><i data-lucide="clock" style="width:14px;height:14px;"></i> Ongoing</span>
+        </div>
+        <p class="thesis-desc">
+          This thesis develops a novel framework that combines physics-informed neural networks with finite element models and real sensor measurements to create accurate digital twins of structures. The approach enables real-time structural health monitoring with physically consistent predictions, even under limited sensor configurations.
+        </p>
+        <ul class="thesis-contributions">
+          <li>Development of Physics-Informed Neural Networks (PINNs) for structural response prediction and damage detection</li>
+          <li>Integration of finite element simulations and sensor measurements for digital twin development</li>
+          <li>Application of machine learning and structural dynamics methods for Structural Health Monitoring</li>
+          <li>Validation using experimental data and benchmark structural systems</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== SKILLS ====== -->
+  <section id="skills">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Capabilities</div>
+        <div class="section-title">Technical Skills</div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category reveal reveal-delay-1">
+          <div class="skill-category-title">
+            <i data-lucide="code" style="width:14px;height:14px;"></i>
+            Programming
+          </div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <span class="skill-name">Python</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">MATLAB</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal reveal-delay-2">
+          <div class="skill-category-title">
+            <i data-lucide="building-2" style="width:14px;height:14px;"></i>
+            Civil Software
+          </div>
+          <div class="skill-simple">
+            <div class="skill-simple-item">SAP2000</div>
+            <div class="skill-simple-item">ETABS</div>
+            <div class="skill-simple-item">SAFE</div>
+            <div class="skill-simple-item">OpenSees</div>
+            <div class="skill-simple-item">SeismoStruct</div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal reveal-delay-3">
+          <div class="skill-category-title">
+            <i data-lucide="settings" style="width:14px;height:14px;"></i>
+            Engineering Software
+          </div>
+          <div class="skill-simple">
+            <div class="skill-simple-item">Abaqus</div>
+            <div class="skill-simple-item">COMSOL Multiphysics</div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal reveal-delay-4">
+          <div class="skill-category-title">
+            <i data-lucide="globe" style="width:14px;height:14px;"></i>
+            Languages
+          </div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <span class="skill-name">Persian</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="100%"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">English (B2)</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="72%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== AWARDS ====== -->
+  <section id="awards">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Recognition</div>
+        <div class="section-title">Academic Awards</div>
+      </div>
+
+      <div class="awards-list">
+        <div class="award-item reveal reveal-delay-1">
+          <div class="award-icon">
+            <i data-lucide="trophy" style="width:20px;height:20px;"></i>
+          </div>
+          <div class="award-text">
+            <h3>Bronze Medal (3rd Place) — Civil Engineering Olympiad</h3>
+            <p>Iran National Olympiad, 2024</p>
+          </div>
+        </div>
+        <div class="award-item reveal reveal-delay-2">
+          <div class="award-icon">
+            <i data-lucide="star" style="width:20px;height:20px;"></i>
+          </div>
+          <div class="award-text">
+            <h3>Member of Iran's National Foundation</h3>
+            <p>Recognized by the National Elite Foundation of Iran</p>
+          </div>
+        </div>
+        <div class="award-item reveal reveal-delay-3">
+          <div class="award-icon">
+            <i data-lucide="medal" style="width:20px;height:20px;"></i>
+          </div>
+          <div class="award-text">
+            <h3>Ranked 2nd among 66 Peers — B.Sc. Civil Engineering</h3>
+            <p>Shahid Bahonar University of Kerman, 2024</p>
+          </div>
+        </div>
+        <div class="award-item reveal reveal-delay-4">
+          <div class="award-icon">
+            <i data-lucide="users" style="width:20px;height:20px;"></i>
+          </div>
+          <div class="award-text">
+            <h3>Member of Civil Engineering Scientific Association</h3>
+            <p>Shahid Bahonar University of Kerman, 2022</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== TEACHING & EXPERIENCE ====== -->
+  <section id="experience">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Experience</div>
+        <div class="section-title">Teaching & Work Experience</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+        <div>
+          <div class="reveal reveal-delay-1" style="font-size:0.8rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+            <i data-lucide="book-open" style="width:14px;height:14px;color:var(--accent);"></i>
+            Teaching Assistant
+          </div>
+          <div class="teaching-list">
+            <div class="teaching-item reveal reveal-delay-1">
+              <div class="teaching-course">Physics I</div>
+              <div class="teaching-detail">Sharif University of Technology — Fall 2025</div>
+            </div>
+            <div class="teaching-item reveal reveal-delay-2">
+              <div class="teaching-course">Concrete Structures I</div>
+              <div class="teaching-detail">Sharif University of Technology — Spring 2025</div>
+            </div>
+            <div class="teaching-item reveal reveal-delay-3">
+              <div class="teaching-course">Dynamics</div>
+              <div class="teaching-detail">Shahid Bahonar University — Fall 2023 & Spring 2024</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="reveal reveal-delay-2" style="font-size:0.8rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+            <i data-lucide="briefcase" style="width:14px;height:14px;color:var(--accent);"></i>
+            Industry
+          </div>
+          <div class="exp-list">
+            <div class="exp-item reveal reveal-delay-2">
+              <div>
+                <div class="exp-role">Structural Engineer</div>
+                <div class="exp-company">Abar Fanavari Energy</div>
+              </div>
+              <div class="exp-date">2025 — 2026</div>
+            </div>
+            <div class="exp-item reveal reveal-delay-3">
+              <div>
+                <div class="exp-role">Structural Engineer (Internship)</div>
+                <div class="exp-company">Tahkim Sazeh Khour</div>
+              </div>
+              <div class="exp-date">Jun — Sep 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====== CONTACT ====== -->
+  <section id="contact">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Contact</div>
+        <div class="section-title">Get in Touch</div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal reveal-delay-1">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="mail" style="width:20px;height:20px;"></i>
+            </div>
+            <div>
+              <div class="contact-label">University Email</div>
+              <div class="contact-value">
+                <a href="mailto:mohammad.shamsi03@sharif.edu">mohammad.shamsi03@sharif.edu</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="mail" style="width:20px;height:20px;"></i>
+            </div>
+            <div>
+              <div class="contact-label">Personal Email</div>
+              <div class="contact-value">
+                <a href="mailto:mohammadshamsi.pc@gmail.com">mohammadshamsi.pc@gmail.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="map-pin" style="width:20px;height:20px;"></i>
+            </div>
+            <div>
+              <div class="contact-label">Address</div>
+              <div class="contact-value">
+                <span>Sharif University of Technology, Tehran, Iran</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="github" style="width:20px;height:20px;"></i>
+            </div>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">
+                <a href="https://github.com/mohammadshamsice" target="_blank">github.com/mohammadshamsice</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-cta-box reveal reveal-delay-2">
+          <i data-lucide="send" style="width:40px;height:40px;color:var(--accent);margin-bottom:16px;"></i>
+          <h3>Interested in Collaboration?</h3>
+          <p>
+            I am actively seeking PhD positions for 2027. If you are looking for a motivated researcher in structural health monitoring, computational mechanics, or ML for structures, I would love to hear from you.
+          </p>
+          <a href="mailto:mohammad.shamsi03@sharif.edu" class="btn-primary">
+            <i data-lucide="mail" style="width:16px;height:16px;"></i>
+            Send an Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2025 Mohammad Shamsi. Built with care for the research community.
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#publications">Publications</a>
+        <a href="#code">Code</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i data-lucide="arrow-up" style="width:18px;height:18px;"></i>
+  </button>
+
+  <!-- ====== JAVASCRIPT ====== -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // ===== Mobile Menu =====
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      const icon = mobileToggle.querySelector('i');
+      if (mobileMenu.classList.contains('open')) {
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        const icon = mobileToggle.querySelector('i');
+        icon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+      });
+    });
+
+    // ===== Navbar scroll effect =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ===== Active nav link on scroll =====
+    const sections = document.querySelectorAll('section[id], .hero');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function updateActiveNav() {
+      const scrollPos = window.scrollY + 120;
+      sections.forEach(section => {
+        const id = section.id || 'home';
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+
+    // ===== Back to Top =====
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Project Toggle =====
+    function toggleProject(header) {
+      const card = header.parentElement;
+      const body = card.querySelector('.project-body');
+      const toggle = header.querySelector('.project-toggle');
+
+      body.classList.toggle('open');
+      toggle.classList.toggle('open');
+    }
+
+    // ===== Scroll Reveal =====
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Animate skill bars within this element
+          const skillBars = entry.target.querySelectorAll('.skill-fill');
+          skillBars.forEach((bar, i) => {
+            setTimeout(() => {
+              bar.style.width = bar.dataset.width;
+            }, i * 150);
+          });
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ===== Responsive Teaching/Experience Grid =====
+    const expSection = document.getElementById('experience');
+    function handleExpResponsive() {
+      const grid = expSection.querySelector('div[style*="grid-template-columns"]');
+      if (grid) {
+        if (window.innerWidth <= 768) {
+          grid.style.gridTemplateColumns = '1fr';
+          grid.style.gap = '40px';
+        } else {
+          grid.style.gridTemplateColumns = '1fr 1fr';
+          grid.style.gap = '48px';
+        }
+      }
+    }
+
+    handleExpResponsive();
+    window.addEventListener('resize', handleExpResponsive);
+  </script>
+</body>
+</html>
