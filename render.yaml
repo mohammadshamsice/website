@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: shamsi-shm-platform
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shamsi-db
+          property: connectionString
+      - key: ENVIRONMENT
+        value: production
+
+databases:
+  - name: shamsi-db
+    databaseName: shm_platform
+    plan: free
